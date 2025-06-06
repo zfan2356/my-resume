@@ -66,6 +66,7 @@
       )[
         - 负责微信内部基座大模型预训练/后训练的框架开发工作，包括模型训练加速，显存优化等。
         - 参与DeepSeek Infra的复现工作，使用ThunderKittens重构DeepGEMM，负责框架内*80%*的Kernel开发工作。
+        - 参与RL框架的搭建工作，搭建Parameter Server，使用RDMA实现参数高性能通信。
       ]
     )
   }
@@ -176,13 +177,18 @@
     ], zh: [
       - 编译器：理解局部无名表示法、惰性代换（ES）、ANF、(P)HOAS 等技术，理解语义正规化（NbE）及其使用的惰性闭包技术。熟悉大部分 parser 生成器，理解布局的语法解析。
     ])
+    let llm = translate(en: [
+      - LLM: familiar with LLM development, especially with the training and inference of large models.
+    ], zh: [
+      - 大模型：熟悉LLM训练和推理的基本流程，熟悉内存/显存优化技术，以及训练/推理加速。
+    ])
     let progLang = {
-      let very = "Java Kotlin Rust C# Agda Haskell Arend"
-      let somehow = "Dart C C++ F# F★ Idris Perl MATLAB"
+      let very = "C/C++ Python Go"
+      let somehow = "Java Rust"
       translate(en: [
-        - Programming Languages: multilingual (not limited to any specific language), especially experienced in #very, comfortable with #somehow (in random order).
+        - *Programming Languages*: multilingual (not limited to any specific language), especially experienced in #very, comfortable with #somehow (in random order).
       ], zh: [
-        - 编程语言：泛语言（编程不受特定语言限制），且尤其熟悉 #very，较为熟悉 #somehow（排名均不分先后）。
+        - *编程语言*：泛语言（编程不受特定语言限制），且尤其熟悉 #very，较为熟悉 #somehow（排名均不分先后）。
       ])
     }
     let ideDev = {
@@ -213,7 +219,7 @@
       zh: [- 类型论：理解 Martin-Löf 类型论、余归纳法、同伦类型论、立方类型论；熟悉 Idris，Agda（*5 年经验*，编译器和标准库贡献者），Arend 和一些 Lean/F★/Coq。]
     )
     progLang
-    compiler
+    llm
     kotlinJava
     typeTheory
     noSimple[
