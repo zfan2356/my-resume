@@ -101,7 +101,7 @@
     let ps-date = [#translate-date(12, 2024) -- #current]
     translate(
       en: cventry(
-        tl: [*RDMA Server: Linux Distributed RDMA High-Performance Parameter Distribution Engine*],
+        tl: [*RDMA Server*],
         tr: ps-date,
       )[
       RDMA Server is a parameter distribution engine used by Pre-Train/Post-Train frameworks for efficient parameter distribution. Based on InfiniBand RDMA for high-performance reading, supporting multi-node multi-GPU parameter synchronization and forwarding, it is a Linux high-performance communication engine for large model distributed training.
@@ -111,10 +111,10 @@
       - *High-Performance Logging*: Lock-free queue asynchronous batch log processing combined with thread-local buffering and double-buffering mechanisms. Achieves zero dynamic memory allocation based on memory pre-allocation, coupled with SSD-optimized sequential write strategy and real-time log compression, delivering tens of millions of log writes per second while maintaining nanosecond-level latency.
       ],
       zh: cventry(
-        tl: [*RMDA Server: Linux分布式RMDA高性能参数分发引擎*],
+        tl: [*RMDA Server*],
         tr: ps-date,
       )[
-        RDMA Server 是Pre-Train/Post-Train框架使用的参数分发引擎, 用于高效分发参数, 基于InfiniBand RDMA实现高性能读取, 支持多机多卡参数的同步和转发, 是一套用于大模型分布式训练的Linux高性能通信引擎.
+        RDMA Server 是Pre-Train/Post-Train框架使用的参数分发引擎, 用于高效分发参数, 基于InfiniBand RDMA实现高性能读取分发, 支持多机多卡参数的同步和转发, 是一套用于大模型分布式训练的Linux高性能通信引擎.
         - *高性能通信*: 基于InfiniBand, 使用RDMA优化通信, GPU可以越过CPU读取其他GPU的内存数据, 避免了CPU的干预, 实现高性能通信. 同时也提供了UDP的通信.
         - *PYBIND*: 使用PyBind11封装CPP代码, 提供易于调用的Python接口.
         - *异步支持*: 实现了基于C++20协程标准的无栈协程模型，通过co_await挂起点将异步I/O操作转化为顺序化可等待表达式，在保持事件驱动高性能的同时，通过编译期状态机消除回调，实现同步语义的异步执行流。
@@ -173,13 +173,13 @@
   }
 
   let misc = {
-    let crates   = "https://zfan2356.github.io/AI-Router/"
+    let ai-router   = "https://zfan2356.github.io/AI-Router/"
     let cnlink   = link("https://github.com/zfan2356/my-resume/blob/main/resume/zfan-resume-cn.pdf")
     let enlink   = link("https://github.com/zfan2356/my-resume/blob/main/resume/zfan-resume.pdf")
     translate(en: [
-      - Personal blog: #link(crates), recording learning experiences and technical sharing.
+      - Personal blog: #link(ai-router)[ai-router], recording learning experiences and technical sharing.
     ], zh: [
-      - 个人博客：#link(crates)[Crates.io], 记录学习心得与技术分享.
+      - 个人博客：#link(ai-router)[ai-router], 记录学习心得与技术分享.
     ])
     translate(
       en: [- Languages: English - fluent, Chinese - native speaker],
@@ -200,6 +200,7 @@
 
   translate(en: [== Related Projects], zh: [== 项目经历])
   mimikyu
+  ps
 
   translate(en: [== Skills], zh: [== 技能])
   skills
