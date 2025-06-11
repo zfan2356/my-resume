@@ -29,45 +29,98 @@
   )
 
   let edu = {
-    let neu-courses = (
-      ([Operating Systems], [操作系统]),
-      ([Computer Networks], [计算机网络]),
-      ([Computer Architecture], [计算机体系结构]),
+    let psu-courses = (
+      ([Math 435], [Abstract Algebra], [抽象代数]),
+      ([Cmpsc 450], [Concurrent Programming], [并发科学编程]),
+      ([Math 427], [Foundations of Geometry], [几何基础]),
+      ([Math 429], [Introduction to Topology], [拓扑学入门]),
+      ([Math 437], [Algebraic Geometry], [代数几何]),
     )
     translate(en: [== Education], zh: [== 教育经历])
-    let neu-date = [#translate-date(9, 2021) -- #translate-date(6, 2025)]
+    let gpa = 3.28
+    let psu-date = [#translate-date(8, 2018) -- #translate-date(12, 2022)]
     translate(
       en: cventry(
-        tl: [B.S. in Software Engineering at *Northeastern University*, NE, China],
-        tr: neu-date,
-      )[Selected courses: #neu-courses.map(item => item.at(0)).join(", ")],
+        tl: [B.S. in Computer Science at *The Pennsylvania State University*, PA, US],
+        tr: psu-date,
+      )[Minor in Mathematics, GPA #gpa/4.00#noSimple(simple: [,
+        selected courses: #psu-courses.map(item => item.at(0)).join(", ")])[\
+        Selected courses: #psu-courses.map(item => item.at(0) + " " + item.at(1)).join(", ")]],
       zh: cventry(
-        tl: [东北大学，软件工程专业，本科，中国],
-        tr: neu-date,
-      )[部分必修课程：#neu-courses.map(item => item.at(1)).join(", ")],
+        tl: [宾夕法尼亚州州立大学，计算机科学专业，本科，美国],
+        tr: psu-date,
+      )[副专业：数学, GPA #gpa/4.00\
+        部分选修课程：#psu-courses.map(item => item.at(0) + " " + item.at(2)).join(", ")],
+    )
+
+    let cmu-courses = (
+      ([15-836], [Substructural Logics], [亚结构逻辑]),
+      ([15-791], [Advanced Topics in Foundations of Types and Programming Languages], [类型和编程语言基础中的高级课题])
+    )
+    let cmu-date = [#translate-date(8, 2023) -- #current]
+    translate(
+      en: cventry(
+        tl: [Ph.D. in Computer Science at *Carnegie Mellon University*, PA, US],
+        tr: cmu-date,
+      )[Advisor: Stephanie Balzer#noSimple(simple: [,
+        selected courses: #cmu-courses.map(item => item.at(0)).join(", ")])[\
+        Selected courses: #cmu-courses.map(item => item.at(0) + " " + item.at(1)).join(", ")]],
+      zh: cventry(
+        tl: [卡内基梅隆大学，计算机科学专业，博士，美国],
+        tr: cmu-date,
+      )[导师：Stephanie Balzer\
+        部分选修课程：#cmu-courses.map(item => item.at(0) + " " + item.at(2)).join(", ")],
     )
   }
 
-  let wechat = {
-    let wechat-date = [#translate-date(12, 2024) -- #current]
+  let sbrella = {
+    let sbrella-date = [#translate-date(2, 2018) -- #translate-date(7, 2018)]
     translate(
       en: cventry(
-        tl: [*Tencent*, WXG WeChat Technology Group],
-        tr: wechat-date,
-        bl: [Technology Architecture Department, Pre-training/Post-training Engineer of Base Model],
-      )[
-        - Responsible for the framework development of pre-training/post-training of base model in WeChat, including model training acceleration and memory optimization.
-        - Participated in the reimplementation of DeepSeek Infra, using ThunderKittens to refactor DeepGEMM, and responsible for the development of *80%* of Kernels in the framework.
-      ],
+        tl: [*Sourcebrella Inc.*, Shenzhen, China],
+        tr: sbrella-date,
+        bl: [_Static Analysis_, Compiler Frontend, IDE Plugin Development],
+      )[#noSimple[
+      - Created IntelliJ/CLion/Eclipse plugin for the Pinpoint analyzer. Co-worked on the SonarQube plugin.
+      - Created a multi-threading cross Java/Kotlin source code indexer which can index Hadoop within 4 minutes.
+      - Learned a lot about Linux programming and the Clang/LLVM codebase.
+      ]],
       zh: cventry(
-        tl: [*腾讯科技有限公司* WXG 微信事业群],
-        tr: wechat-date,
-        bl: [技术架构部，基座大模型预训练/后训练工程师],
-      )[
-        - 负责微信内部基座大模型预训练/后训练的框架开发工作，包括模型训练加速，显存优化等。
-        - 参与DeepSeek Infra的复现工作，使用ThunderKittens重构DeepGEMM，负责框架内*80%*的Kernel开发工作。
-        - 参与RL框架的搭建工作，搭建Parameter Server，使用RDMA实现参数高性能通信。
-      ]
+        tl: [*深圳市前海源伞科技有限公司*，深圳，中国],
+        tr: sbrella-date,
+        bl: [静态分析，编译器前端，IDE 插件开发实习],
+      )[#noSimple[
+      - 负责 pinpoint 分析器的 IntelliJ/CLion/Eclipse 工具集成，协助开发 SonarQube 插件。
+      - 编写了一个多线程的跨 Java/Kotlin 的源代码索引工具，索引 Hadoop 源码仅需 4 分钟。
+      - 学到了很多 Linux 编程和 Clang/LLVM 源码相关的知识。
+      ]],
+    )
+  }
+
+  let pingcap = {
+    let grpcio = link("https://docs.rs/crate/grpcio", "grpcio")
+    let procinfo = link("https://docs.rs/crate/procinfo", "procinfo")
+    let protobuf = "Protocol-Buffer"
+    let pingcap-date = [#translate-date(8, 2018) -- #translate-date(8, 2019)]
+    translate(
+      en: cventry(
+        tl: [*PingCAP Inc.*, Remote],
+        tr: pingcap-date,
+        bl: [_Distributed Storage Systems_, TiKV Intern -- Ecosystem Team],
+      )[#noSimple[
+      - Improved many TiKV-relevant libraries, like optimizing the performance of #grpcio, adding new features to #procinfo.
+      - Helped to migrate the #protobuf library used by TiKV and its Raft implementation.
+      - Learned a lot about Rust programming, distributed system, working remotely, and databases.
+      ]],
+      zh: cventry(
+        tl: [*北京平凯星辰科技发展有限公司*，远程],
+        tr: pingcap-date,
+        bl: [分布式存储系统，TiKV 实习 -- Ecosystem 小组],
+      )[#noSimple[
+      - 改进各种 TiKV 的外部依赖库，如优化 #grpcio 的内存性能，改善 #procinfo 的功能。
+      - 协助迁移 TiKV 及其 Raft 实现所使用的 #protobuf 库。
+      - 学到了很多 Rust 编程、分布式系统、远程工作和数据库相关的知识。
+      ]],
     )
   }
 
@@ -97,6 +150,85 @@
       - 开发了一个可扩展的 REPL 引擎，并提供命令行实现（可通过上下文补全，使用 `jline3` 框架）、IntelliJ IDEA 实现（可与打开的项目进行交互，支持补全、高亮和跳转）。
       - 设计并实现了一个表达式类型检查的调试器，支持显示局部变量和表达式栈帧，同时支持单步调试。
       ],
+    )
+  }
+
+  let plct = {
+    let aya-date = [#translate-date(12, 2020) -- #current]
+    let ntypeCafe = "https://infinity-type-cafe.github.io/ntype-cafe-summer-school"
+    translate(
+      en: cventry(
+        tl: [*PLCT Lab*, Remote],
+        tr: aya-date,
+        bl: [_Implementation of Dependent Types_, Opensource Maintainer],
+      )[#noSimple(
+        // simple: [- Leading a team to explore modern techniques in type theory implementation.]
+      )[
+      - Leading a team to explore modern techniques in type theory implementation, such as pattern unification, elimination of dependent pattern matching, Cartesian cubical type theory, termination check of recursive functions, phase distinction between layers of a type theory, etc.
+      - Organized reading activities on design and implementation of type theory, presented several talks in #link(ntypeCafe)[∞-Type Café Summer School on Type Theory] (in Chinese).
+      ]],
+      zh: cventry(
+        tl: [*PLCT 实验室*，远程],
+        tr: aya-date,
+        bl: [依值类型系统实现，开源维护者],
+      )[
+      - 带领类型小队探索现代化的依值类型实现策略，包括但不限于用到模式合一化、依值模式匹配的检查、Cartesian 立方类型论、递归函数停机性检查、类型论不同层面之间的阶段分离等。
+      - 组织一些关于类型论设计和实现的读书活动以及知识分享，作为讲师参与 #link(ntypeCafe)[∞-Type Café 类型论暑校]。
+      ],
+    )
+  }
+
+  let risingwave = {
+    let risingwave-date = [#translate-date(7, 2022) -- #translate-date(7, 2023)]
+    translate(
+      en: cventry(
+        tl: [*RisingWave Labs*, Remote],
+        tr: risingwave-date,
+        bl: [_Streaming Database_, Developer Intern],
+      )[
+      #noSimple[- Proposed an overhaul of the query plan AST design, which better facilitates the enum feature implemented in the Rust language.]
+      - Implemented a pretty printing framework for trees with smart line fitting and Unicode art. Integrated into SQL explain.
+      ],
+      zh: cventry(
+        tl: [*北京奇点无限数据科技有限公司*，远程],
+        tr: risingwave-date,
+        bl: [数据库开发，实习],
+      )[
+      - 提案重构查询计划语法树的设计以更好地使用 Rust 编程语言的枚举功能。
+      - 实现将树状数据使用 Unicode 艺术可视化的算法，会计算行宽并支持智能断行，集成到 SQL explain 中。
+      ],
+    )
+  }
+
+  let mcREU = {
+    let reu-date = [#translate-date(5, 2019) -- #translate-date(8, 2019)]
+    let ghLink = githublink("owo-lang/voile-rs")
+    translate(
+      en: cventry(
+        tl: [*Multi-Campus REU*, State College],
+        tr: reu-date,
+      )[
+      - Extensively studied the literature on row polymorphism and record calculus.
+      - Implemented (#ghLink) and formalized a row polymorphic dependent type theory.
+      ],
+      zh: cventry(
+        tl: [*跨校区本科科研活动*，州学院],
+        tr: reu-date,
+      )[- 广泛地调研关于行多态和结构体演算的研究，设计、实现（#ghLink）并形式化了一个相关的依值类型系统。],
+    )
+  }
+
+  let la461 = {
+    let la461-date = [#translate-date(8, 2022) -- #translate-date(12, 2022)]
+    translate(
+      en: cventry(
+        tl: [*Learning Assistant* for Cmpsc 461 (Programming Language Concepts), State College],
+        tr: la461-date,
+      )[],
+      zh: cventry(
+        tl: [*Cmpsc 461 课程助教*（课程标题：编程语言概念），州学院],
+        tr: la461-date,
+      )[],
     )
   }
 
@@ -177,18 +309,13 @@
     ], zh: [
       - 编译器：理解局部无名表示法、惰性代换（ES）、ANF、(P)HOAS 等技术，理解语义正规化（NbE）及其使用的惰性闭包技术。熟悉大部分 parser 生成器，理解布局的语法解析。
     ])
-    let llm = translate(en: [
-      - LLM: familiar with LLM development, especially with the training and inference of large models.
-    ], zh: [
-      - 大模型：熟悉LLM训练和推理的基本流程，熟悉内存/显存优化技术，以及训练/推理加速。
-    ])
     let progLang = {
-      let very = "C/C++ Python Go"
-      let somehow = "Java Rust"
+      let very = "Java Kotlin Rust C# Agda Haskell Arend"
+      let somehow = "Dart C C++ F# F★ Idris Perl MATLAB"
       translate(en: [
-        - *Programming Languages*: multilingual (not limited to any specific language), especially experienced in #very, comfortable with #somehow (in random order).
+        - Programming Languages: multilingual (not limited to any specific language), especially experienced in #very, comfortable with #somehow (in random order).
       ], zh: [
-        - *编程语言*：泛语言（编程不受特定语言限制），且尤其熟悉 #very，较为熟悉 #somehow（排名均不分先后）。
+        - 编程语言：泛语言（编程不受特定语言限制），且尤其熟悉 #very，较为熟悉 #somehow（排名均不分先后）。
       ])
     }
     let ideDev = {
@@ -219,7 +346,7 @@
       zh: [- 类型论：理解 Martin-Löf 类型论、余归纳法、同伦类型论、立方类型论；熟悉 Idris，Agda（*5 年经验*，编译器和标准库贡献者），Arend 和一些 Lean/F★/Coq。]
     )
     progLang
-    llm
+    compiler
     kotlinJava
     typeTheory
     noSimple[
@@ -302,15 +429,18 @@
 
   // Start of the document
 
-  translate(en: [= #smallcaps[Fan Zhang]], zh: [= #smallcaps[张帆]])
+  translate(en: [= #smallcaps[Tesla Zhang]], zh: [= #smallcaps[Tesla Zhang] (千里冰封)])
 
-  [#link("zfan38551@gmail.com")[zfan38551\@gmail.com] $dot.c$ #iconlink("https://github.com/zfan2356", icon: "github")]
+  [#link("mailto:ice1000kotlin@gmail.com")[ice1000kotlin\@gmail.com] $dot.c$ #iconlink("https://ice1000.org") $dot.c$ #iconlink("https://github.com/ice1000", icon: "github")]
 
   edu
 
   translate(en: [== Work Experience], zh: [== 工作经历])
-  wechat
   jetbrains
+  plct
+  risingwave
+  sbrella
+  pingcap
 
   translate(en: [== Related Projects], zh: [== 项目经历])
   aya
@@ -318,6 +448,12 @@
   noSimple[
     #arendVSCode
     #arendIO
+  ]
+
+  noSimple[
+    #translate(en: [== Academic Experience], zh: [== 学术经历])
+    #mcREU
+    #la461
   ]
 
   translate(en: [== Skills], zh: [== 技能])

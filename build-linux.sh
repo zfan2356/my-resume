@@ -1,6 +1,9 @@
 #!/bin/bash
 
+cd resume
 rm -f zfan-*.pdf
+
+cd ../src
 
 files=("zfan-resume-cn" "zfan-resume" "zfan-resume-elab")
 echo "Generating..."
@@ -20,4 +23,8 @@ for f in "${files[@]}"; do
   echo "Building $f.typ"
   typst compile "$f.typ"
   rm "$f.typ"
+done
+
+for f in "${files[@]}"; do
+  mv "$f.pdf" "../resume/"
 done
