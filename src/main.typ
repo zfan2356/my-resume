@@ -42,7 +42,7 @@
         tr: neu-date,
       )[Selected courses: #neu-courses.map(item => item.at(0)).join(", ")],
       zh: cventry(
-        tl: [*东北大学*，软件工程专业，本科，中国],
+        tl: [*东北大学*, 软件工程专业, 本科, 中国],
         tr: neu-date,
       )[部分必修课程：#neu-courses.map(item => item.at(1)).join(", ")],
     )
@@ -62,32 +62,67 @@
       zh: cventry(
         tl: [*腾讯科技有限公司* WXG 微信事业群],
         tr: wechat-date,
-        bl: [技术架构部，基座大语言模型pre-train/post-train工程师],
+        bl: [技术架构部, 基座大语言模型pre-train/post-train工程师],
       )[
         - 负责微信内部基座大语言模型预训练/后训练的框架开发工作，包括模型训练加速，显存优化等。
-        - 参与DeepSeek Infra的复现工作，使用ThunderKittens重构DeepGEMM，负责框架内*80%*的Kernel开发工作。
-        - 参与RL框架的搭建工作，搭建Parameter Server，使用RDMA实现参数高性能通信。
+        - 参与DeepSeek Infra的复现工作, 使用ThunderKittens重构DeepGEMM, 负责框架内*80%*的Kernel开发工作。
+        - 参与RL框架的搭建工作, 搭建Parameter Server, 使用RDMA实现参数高性能通信。
       ]
     )
   }
 
   let mimikyu = {
+    let mimikyu-date = [#translate-date(12, 2024) -- #current]
     translate(
       en: cventry(
-        tl: [Distributed Pre-training Engine for Large Language Models],
-        // tr: githublink("aya-prover/aya-dev"),
+        tl: [*Distributed Pre-training Engine for Large Language Models*],
+        tr: mimikyu-date,
       )[
-      - Supports dependent types, dependent pattern matching with confluence check for overlapping clauses, higher inductive types, GADTs (paper published), hierarchial universes, cubical type theory features, and implicit arguments.
-      - Can export elaboration result to HTML or #latex. Can JIT-compile closures into JVM using HOAS, Can refine patterns using coverage information. Supports both LSP in VSCode and IntelliJ PSI. Provide jlink binary releases.
+      A large-scale pre-training engine developed for WeChat's next-generation foundation model WELM, supporting multi-node multi-GPU training of trillion-parameter language models with industry-leading distributed training capabilities, perfectly adapted to the WeChat ecosystem.
+      - *High-Performance Parallelism*: Implements 3D parallelism (TP+DP+PP) and ZeRO for dense models, with EP parallelism support for MoE models, enabling distributed training across multiple machines and GPUs.
+      - *Customized Kernels*: Integrated forward and backward computation for most operators using Triton/ThunderKittens, with multiple operator fusion implementations to optimize memory usage and accelerate training efficiency.
+      - *FP8 Precision Support*: Supports FP8 low-precision training with flexible precision selection through Quant/Dequant operations for efficient low-precision training.
+      - *Cutting-edge Technology Integration*: Supports Dualpipe/DeepEP to achieve computation and communication overlap.
       ],
       zh: cventry(
-        tl: [大模型分布式预训练引擎],
-        // tr: githublink("aya-prover/aya-dev"),
+        tl: [*大模型分布式预训练引擎*],
+        tr: mimikyu-date,
       )[
-      - 
+      大模型分布式预训练引擎是为了微信内部新一代基座WELM自研的大规模预训练引擎, 支持多机多卡训练万亿级别参数的语言模型, 实现业界领先的模型大规模集群分布式训练, 完美适配微信生态. 
+      - *高性能并行策略*: Dense模型实现3D并行TP+DP+PP以及ZeRO, 同时对MoE模型支持EP并行, 实现多机多卡分布式训练.
+      - *定制化内核*: 使用Triton/ThunderKittens实现大部分算子的前向和反向计算集成到框架内, 同时实现多种算子的Fusion, 优化显存占用, 加速训练效率.
+      - *FP8精度支持*: 支持FP8低精度训练, 同时也可以灵活选择训练精度, 通过Quant/Dequant实现低精度训练.
+      - *前沿技术集成*: 支持Dualpipe/DeepEP, 实现计算和通信的overlap.
       ],
     )
   }
+
+  let ps = {
+    let ps-date = [#translate-date(12, 2024) -- #current]
+    translate(
+      en: cventry(
+        tl: [*RDMA Server: Linux Distributed RDMA High-Performance Parameter Distribution Engine*],
+        tr: ps-date,
+      )[
+      RDMA Server is a parameter distribution engine used by Pre-Train/Post-Train frameworks for efficient parameter distribution. Based on InfiniBand RDMA for high-performance reading, supporting multi-node multi-GPU parameter synchronization and forwarding, it is a Linux high-performance communication engine for large model distributed training.
+      - *High-Performance Communication*: Based on InfiniBand, uses RDMA to optimize communication. GPUs can read memory data from other GPUs bypassing CPU, avoiding CPU intervention and achieving high-performance communication. Also provides UDP communication support.
+      - *Python Binding*: Uses PyBind11 to wrap C++ code, providing easy-to-call Python interfaces.
+      - *Asynchronous Support*: Implemented stackless coroutine model based on C++20 coroutine standard, transforming asynchronous I/O operations into sequential awaitable expressions through co_await suspension points. While maintaining event-driven high performance, eliminates callbacks through compile-time state machines, achieving synchronous semantics for asynchronous execution flow.
+      - *High-Performance Logging*: Lock-free queue asynchronous batch log processing combined with thread-local buffering and double-buffering mechanisms. Achieves zero dynamic memory allocation based on memory pre-allocation, coupled with SSD-optimized sequential write strategy and real-time log compression, delivering tens of millions of log writes per second while maintaining nanosecond-level latency.
+      ],
+      zh: cventry(
+        tl: [*RMDA Server: Linux分布式RMDA高性能参数分发引擎*],
+        tr: ps-date,
+      )[
+        RDMA Server 是Pre-Train/Post-Train框架使用的参数分发引擎, 用于高效分发参数, 基于InfiniBand RDMA实现高性能读取, 支持多机多卡参数的同步和转发, 是一套用于大模型分布式训练的Linux高性能通信引擎.
+        - *高性能通信*: 基于InfiniBand, 使用RDMA优化通信, GPU可以越过CPU读取其他GPU的内存数据, 避免了CPU的干预, 实现高性能通信. 同时也提供了UDP的通信.
+        - *PYBIND*: 使用PyBind11封装CPP代码, 提供易于调用的Python接口.
+        - *异步支持*: 实现了基于C++20协程标准的无栈协程模型，通过co_await挂起点将异步I/O操作转化为顺序化可等待表达式，在保持事件驱动高性能的同时，通过编译期状态机消除回调，实现同步语义的异步执行流。
+        - *高性能日志库*: 无锁队列异步批量化日志处理、结合线程本地缓冲与双缓冲机制，在内存预分配的基础上实现零动态内存分配，配合SSD优化顺序写策略和实时日志压缩，达成每秒千万级日志写入性能同时保持纳秒级延迟。
+      ],
+    )
+  }
+
 
   let skills = {
     let acm = {
@@ -95,19 +130,13 @@
       translate(en: [
         - *ACM* (Association for Computing Machinery), member since #acm-date
       ], zh: [
-        - *ACM竞赛经历* 熟悉算法与数据结构，代码能力强，曾获得*ICPC金牌*，codeforces 2300+
+        - *ACM竞赛经历* 熟悉算法与数据结构，代码能力强，曾获得*ICPC金牌*, ICPC/CCPC银牌若干, *省赛亚军*， codeforces 2300+
       ])
     }
 
-    let llm = translate(en: [
-      - LLM: familiar with LLM development, especially with the training and inference of large models.
-    ], zh: [
-      - *LLM算法*：熟悉大模型预训练/后训练相关算法，。
-    ])
-
     let progLang = {
-      let very = "C/C++ Python Go"
-      let somehow = "Java Rust"
+      let very = "C/C++, Python, Go"
+      let somehow = "Java, Rust"
       translate(en: [
         - *Programming Languages*: multilingual (not limited to any specific language), especially experienced in #very, comfortable with #somehow (in random order).
       ], zh: [
@@ -115,77 +144,46 @@
       ])
     }
 
+    let llm-algo = translate(en: [
+      - *LLM Algorithms*: Proficient in large model pre-training algorithms, familiar with cutting-edge Dense and MoE technologies. Deep understanding of model architectures including Llama, DeepSeek, Qwen, and comprehension of principles and designs of components like Rotary, RMSNorm, Swiglu. Experienced in large model post-training algorithms, familiar with principles and designs of DPO, PPO, GRPO.
+    ], zh: [
+      - *LLM算法*: 熟悉大模型预训练相关算法, 熟悉Dense, MoE前沿技术, 深入了解Llama, DeepSeek, Qwen等模型结构, 了解Rotary, RMSNorm, Swiglu等原理和设计. 熟悉大模型后训练相关算法, 熟悉DPO, PPO, GRPO等原理和设计. 
+    ])
+
+    let llm-infra = translate(en: [
+      - *Proficient in LLM Infrastructure*: Have studied source code of frameworks including Megatron-LM, DeepSpeed, FSDP, Verl, understanding their principles and designs. Familiar with distributed computing/communication libraries such as Ray, NCCL, and proficient in PyTorch.
+    ], zh: [
+      - *LLM Infra*: 阅读过Megatron-LM, DeepSpeed, FSDP, Verl等框架源码, 了解其原理和设计, 了解Ray, NCCL等分布式计算/通信库, 熟练掌握PyTorch.
+    ])
+
+    let system = {
+      translate(en: [
+        - *System & Hardware*: Understanding of Linux low-level principles, familiar with GPU/CPU hardware knowledge, proficient in X86-64, ARM64, RISC-V architecture knowledge, skilled in NVIDIA GPU underlying architecture and PTX assembly, proficient in writing CUDA-related code.
+      ], zh: [
+        - *System*: 了解Linux底层原理, 了解GPU/CPU硬件知识, 掌握X86-64, ARM64, RISC-V等架构知识, 熟练掌握NVIDIA GPU底层架构以及PTX汇编, 熟练编写CUDA相关代码.
+      ])
+    }
 
     acm
     progLang
-    llm
+    llm-algo
+    llm-infra
+    system
 
   }
 
   let misc = {
-    let intellij = "https://plugins.jetbrains.com/author/10a216dd-c558-4aaf-aa8a-723f431452fb"
-    let osc      = link("https://ice1000.org/opensource-contributions")
-    // bintray  = "https://bintray.com/ice1000"
-    let crates   = "https://crates.io/users/ice1000"
-    // What to do with this?
-    // let personal = "https://personal.psu.edu/yqz5714"
-    let seRep    = [6000+]
-    let paRep    = [5000+]
-    let stackex(e) = link("https://stackexchange.com/users/9532102")[#e]
-    let pase     = link("https://proofassistants.stackexchange.com/users/32/ice1000")[Proof Assistants]
-    // https://raw.githubusercontent.com/ice1000/resume/master/resume.pdf
-    let enSimple = link("https://tinyurl.com/y8xdlfug")
-    // https://raw.githubusercontent.com/ice1000/resume/master/resume-elab.pdf
-    let enElab   = link("https://tinyurl.com/y2v59t36")
-    // https://raw.githubusercontent.com/ice1000/resume/master/resume-cn.pdf
-    let cnLink   = link("https://tinyurl.com/ya4urea8")
-    let codewars = link("https://www.codewars.com/users/ice1000")[CodeWars]
-    let cwLevel  = [*1 dan*]
-    let cwPerc   = [0.020%]
-    let cwRank   = [\#111]
-    let projects = [*agda, Arend, libgdx, jacoco, KaTeX, shields.io, grpc-rs, intellij-solidity, intellij-haskell, intellij-rust, TeXiFy-IDEA, rust-analyzer*]
-
-    translate(en: noSimple(simple: [
-      - Profile links (please use a PDF reader with hyperlink support):
-        #link(crates)[Crates.io],
-        #link(intellij)[IntelliJ] Marketplace
-    ])[
-      - Crates.io: #link(crates), publishing interesting Rust libraries
-      - IntelliJ Marketplace: #link(intellij)
+    let crates   = "https://zfan2356.github.io/AI-Router/"
+    let cnlink   = link("https://github.com/zfan2356/my-resume/blob/main/resume/zfan-resume-cn.pdf")
+    let enlink   = link("https://github.com/zfan2356/my-resume/blob/main/resume/zfan-resume.pdf")
+    translate(en: [
+      - Personal blog: #link(crates), recording learning experiences and technical sharing.
     ], zh: [
-      - 相关个人页面链接（请使用支持超链接的 PDF 阅读器）：#link(crates)[Crates.io] 主页，#link(intellij)[IntelliJ] 插件市场主页
+      - 个人博客：#link(crates)[Crates.io], 记录学习心得与技术分享.
     ])
     translate(
-      en: [- Languages: English - fluent (TOEFL 100), Chinese - native speaker],
-      zh: [- 语言：English - 熟练 (托福 100)，汉语 - 母语水平]
-    )
-    translate(
-      en: [
-        - Open-source contributions: #osc, #noSimple[member of JuliaEditorSupport, agda, pest-parser, EmmyLua, arend-lang and more,]
-          contributed to #projects and other projects #noSimple[(apart from organization ones)]
-      ],
-      zh: [- 开源贡献: #osc，向 #projects 等项目贡献过代码]
-    )
-    [- #link("https://stackoverflow.com/users/7083401/ice1000")[StackOverflow]: #seRep
-      #translate(
-        en: [reputation, also active on #pase (#paRep reputation) and #stackex("other StackExchange sites")],
-        zh: [声誉，同时也在 #pase（#paRep 声誉）和#stackex("其他 StackExchange 子站")活跃]
-      )
-    ]
-    translate(
-      en: [
-        - Latest revision of this resume: one-page version #enSimple, complete version: #enElab
-        #noSimple[- Get the Chinese version of this resume: #cnLink]
-      ],
-      zh: [- 获取此简历的最新更新：中文版本 #cnLink，英语版本 #enElab，单页版本（仅英语）：#enSimple]
-    )
-    translate(
-      en: [
-        - #cwLevel on #codewars, ranked #cwRank on the whole site (Top #cwPerc),
-          #noSimple[solving and making new coding challenges] primarily in Haskell, Agda, and Idris
-          #noSimple[and some other JVM languages]
-      ],
-      zh: [- 在 #codewars 上，以 Haskell、Agda 和 Idris 为主，达到 #cwLevel，全站排名 #cwRank（前 #cwPerc）]
+      en: [- Languages: English - fluent, Chinese - native speaker],
+      zh: [- 语言: English - 熟练(通过四六级)，汉语 - 母语水平]
     )
   }
 
